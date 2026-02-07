@@ -14,7 +14,7 @@ drive.mount('/content/drive')
 
 ### 3. Clone this repository
 ```python
-!git clone https://github.com/yourusername/gemma-finetune.git
+!git clone https://github.com/mccopencraw/gemma-finetune.git
 %cd gemma-finetune
 ```
 
