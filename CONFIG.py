@@ -3,9 +3,8 @@ Configuration file for Gemma 3 270m Fine-tuning Project
 """
 
 # Model Configuration
-MODEL_NAME = "unsloth/gemma-3-270b-it"  # or "unsloth/gemma-3-27b-it" for smaller
-# For actual 270m parameter model:
-# MODEL_NAME = "unsloth/gemma-3-1b-it"  # ~1B parameters (Gemma 3 1B is closer to 270m scale)
+# Using Gemma 3 1B (close to 270m scale) - works well on Colab free tier
+MODEL_NAME = "unsloth/gemma-3-1b-it"
 
 # LoRA Configuration
 LORA_RANK = 16
@@ -13,11 +12,11 @@ LORA_ALPHA = 32
 LORA_DROPOUT = 0
 LORA_TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
 
-# Training Configuration
-BATCH_SIZE = 2
-GRADIENT_ACCUMULATION_STEPS = 4
+# Training Configuration (Optimized for Colab T4/V100)
+BATCH_SIZE = 1  # Small batch for Colab GPU memory
+GRADIENT_ACCUMULATION_STEPS = 8  # Accumulate gradients for effective larger batch
 LEARNING_RATE = 2e-4
-MAX_SEQ_LENGTH = 1024
+MAX_SEQ_LENGTH = 512  # Shorter sequence for memory efficiency
 TRAIN_EPOCHS = 3
 WARMUP_RATIO = 0.1
 WEIGHT_DECAY = 0.01
